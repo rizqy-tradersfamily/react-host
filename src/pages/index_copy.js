@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import React, { useState } from 'react';
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -12,17 +13,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default function Homes() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [encryptedUrl, setEncryptedUrl] = useState(''); // New state for the encrypted URL
   
   function encrypt(text, key) {
     return [...text].map((x, i) => 
       (x.codePointAt() ^ key.charCodeAt(i % key.length) % 255)
        .toString(16)
        .padStart(2,"0")
-     ).join('');
+     ).join('')
   }
 
   const handleSubmit = async (event) => {
@@ -33,17 +33,15 @@ export default function Home() {
     console.log(formData);
 
     let enc = encrypt(name, "Passphrase");
-    let url = "https://rizqy-tradersfamily.github.io/about?" + enc; 
+    let url = "https://rizqy-tradersfamily.github.io/?" + enc; 
 
-    alert("encrypted url: " + url);
-
-    // Set the encrypted URL to state
-    setEncryptedUrl(url);
+    alert("encrypted url:" + url);
 
     // Reset form fields
     setName('');
     setEmail('');
   };
+
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
@@ -51,7 +49,7 @@ export default function Home() {
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-            Name
+            Namas
           </label>
           <input
             type="text"
@@ -82,16 +80,6 @@ export default function Home() {
           Submit
         </button>
       </form>
-
-      {/* Display the encrypted URL if it exists */}
-      {encryptedUrl && (
-        <div className="mt-4 text-center">
-          <p className="text-sm text-gray-600">Encrypted URL:</p>
-          <a href={encryptedUrl} className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
-            {encryptedUrl}
-          </a>
-        </div>
-      )}
     </div>
   );
 }
