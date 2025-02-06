@@ -33,7 +33,7 @@ export default function Home() {
     console.log(formData);
 
     let enc = encrypt(name, "Passphrase");
-    let url = "https://rizqy-tradersfamily.github.io/about?" + enc; 
+    let url = "https://polite-tarsier-2b5159.netlify.app/about?" + enc; 
 
     // alert("encrypted url: " + url);
 
