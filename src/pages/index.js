@@ -35,7 +35,7 @@ export default function Home() {
     let enc = encrypt(name, "Passphrase");
     let url = "https://rizqy-tradersfamily.github.io/about?" + enc; 
 
-    alert("encrypted url: " + url);
+    // alert("encrypted url: " + url);
 
     // Set the encrypted URL to state
     setEncryptedUrl(url);
